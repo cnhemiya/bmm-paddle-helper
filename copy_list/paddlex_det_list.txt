@@ -1,0 +1,5 @@
+templates/paddlex_det/infer.py
+templates/paddlex_det/onetasks.sh
+templates/paddlex_det/prune.py
+templates/paddlex_det/quant.py
+templates/paddlex_det/train.py

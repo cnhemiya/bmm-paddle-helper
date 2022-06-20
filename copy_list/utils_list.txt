@@ -1,0 +1,3 @@
+templates/utils/check_data.sh
+templates/utils/get_data.sh
+templates/utils/onekey.sh
