@@ -3,8 +3,8 @@
 ## train.py
 
 ```bash
-[06-20 16:56:49 MainThread @logger.py:242] Argv: run/train.py -h
-[06-20 16:56:49 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 17:33:21 MainThread @logger.py:242] Argv: run/train.py -h
+[06-20 17:33:21 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: train.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--learning_rate] [--early_stop] [--early_stop_patience]
                 [--save_interval_epochs] [--log_interval_steps]
@@ -55,8 +55,8 @@ optional arguments:
 ## quant.py
 
 ```bash
-[06-20 16:56:51 MainThread @logger.py:242] Argv: run/quant.py -h
-[06-20 16:56:51 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 17:33:23 MainThread @logger.py:242] Argv: run/quant.py -h
+[06-20 17:33:23 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: quant.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--learning_rate] [--early_stop] [--early_stop_patience]
                 [--save_interval_epochs] [--log_interval_steps]
@@ -102,8 +102,8 @@ optional arguments:
 ## prune.py
 
 ```bash
-[06-20 16:56:54 MainThread @logger.py:242] Argv: run/prune.py -h
-[06-20 16:56:54 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 17:33:26 MainThread @logger.py:242] Argv: run/prune.py -h
+[06-20 17:33:26 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: prune.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--learning_rate] [--early_stop] [--early_stop_patience]
                 [--save_interval_epochs] [--log_interval_steps]
@@ -151,8 +151,8 @@ optional arguments:
 ## infer.py
 
 ```bash
-[06-20 16:56:56 MainThread @logger.py:242] Argv: run/infer.py -h
-[06-20 16:56:56 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 17:33:29 MainThread @logger.py:242] Argv: run/infer.py -h
+[06-20 17:33:29 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: infer.py [-h] [--model_dir] [--predict_image] [--predict_image_dir]
                 [--threshold] [--result_list] [--result_dir] [--show_result]
 
@@ -167,6 +167,22 @@ optional arguments:
   --result_list         预测的结果列表文件，默认 './result/result.txt'
   --result_dir          预测结果可视化的保存目录，默认 './result'
   --show_result         显示预测结果的图像
+```
+
+## test.py
+
+```bash
+[06-20 17:33:31 MainThread @logger.py:242] Argv: run/test.py -h
+[06-20 17:33:31 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+usage: test.py [-h] [--cpu] [--epochs] [--dataset] [--test_list] [--model_dir]
+
+optional arguments:
+  -h, --help    show this help message and exit
+  --cpu         是否使用 cpu 计算，默认使用 CUDA
+  --epochs      测试几轮，默认 4 轮
+  --dataset     数据集目录，默认 ./dataset/
+  --test_list   训练集列表，默认 '--dataset' 参数目录下的 test_list.txt
+  --model_dir   读取训练后的模型目录，默认 ./output/best_model
 ```
 
 ## 项目地址

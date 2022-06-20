@@ -14,19 +14,6 @@ import mod.utils
 import mod.report
 
 
-# 分类文本, 按照标签排列
-CLASS_TXT = ["石头", "剪子", "布"]
-
-# 分类数量
-NUM_CLASSES = 3
-
-# 图像通道 彩色 3, 灰度 1
-IMAGE_C = 3
-# 图像高
-IMAGE_H = 224
-# 图像宽
-IMAGE_W = 224
-
 # 数据集路径
 DATASET_PATH = "./dataset/"
 # 训练数据
@@ -61,58 +48,6 @@ REPORT_X_FILE = "report.json"
 
 # 推理结果路径
 INFER_PATH = "./result/"
-
-
-def transform():
-    """
-    获取 transform 对数据进行转换
-
-    Returns:
-        Compose: 转换数据的操作组合
-    """
-    # Resize: 调整图像大小, Normalize: 图像归一化处理, Transpose: 转换图像 HWC 转为 CHW
-    return pptf.Compose([pptf.Resize(size=[IMAGE_H, IMAGE_W]),
-                         pptf.Normalize(mean=[127.5, 127.5, 127.5], std=[
-                                        127.5, 127.5, 127.5], data_format='HWC'),
-                         pptf.Transpose()])
-
-
-def image_to_tensor(image):
-    """
-    图像数据转 tensor
-
-    Returns:
-        tensor: 转换后的 tensor 数据
-    """
-    # 图像数据格式 CHW
-    data = image.reshape([1, IMAGE_C, IMAGE_H, IMAGE_W]).astype("float32")
-    return paddle.to_tensor(data)
-
-
-def train_dataset(transform: pptf.Compose):
-    """
-    获取训练数据集
-
-    Args:
-        transform (Compose): 转换数据的操作组合
-
-    Returns:
-        ImageClass: ImageClass 图像分类数据集解析
-    """
-    return mod.dataset.ImageClass(dataset_path=DATASET_PATH, images_labels_txt_path=TRAIN_LIST_PATH, transform=transform)
-
-
-def test_dataset(transform):
-    """
-    获取测试数据集
-
-    Args:
-        transform (Compose): 转换数据的操作组合
-
-    Returns:
-        ImageClass: ImageClass 图像分类数据集解析
-    """
-    return mod.dataset.ImageClass(dataset_path=DATASET_PATH, images_labels_txt_path=TEST_LIST_PATH, transform=transform)
 
 
 def get_save_dir(save_dir=SAVE_DIR_PATH, time_id=mod.utils.time_id()):

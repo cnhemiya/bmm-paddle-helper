@@ -10,6 +10,7 @@ DATE:    2022-04-08 21:52
 import os
 import time
 import random
+import paddle
 import paddle.nn.functional as F
 
 
@@ -123,3 +124,15 @@ def parse_dataset(dataset_path: str, dataset_list_path: str, inc_label: bool, sh
         else:
             image_paths.append(os.path.join(dataset_path, i))
     return image_paths, labels
+
+
+def image_to_tensor(image, img_c, img_h, img_w):
+    """
+    图像数据转 tensor
+
+    Returns:
+        tensor: 转换后的 tensor 数据
+    """
+    # 图像数据格式 CHW
+    data = image.reshape([1, img_c, img_h, img_w]).astype("float32")
+    return paddle.to_tensor(data)

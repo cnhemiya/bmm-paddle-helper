@@ -28,7 +28,7 @@ TEST_IMAGE_SIZE = 224
 CATEGORY_ID_KEY = "category_id"
 
 
-def main():
+def test():
     # 解析命令行参数
     args = mod.args.TestX()
     # 检查文件或目录是否存在
@@ -72,6 +72,11 @@ def main():
         print("样本数量: {},  正确率: {:<.5f},  正确样本: {},  错误样本: {}".format(
             sample_num, ok_num/sample_num, ok_num, err_num))
     print("结束测试 。。。")
+
+
+def main():
+    # 测试
+    test()
 
 
 if __name__ == '__main__':

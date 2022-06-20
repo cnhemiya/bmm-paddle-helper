@@ -30,4 +30,5 @@ make_doc train
 make_doc quant
 make_doc prune
 make_doc infer
+make_doc test
 make_project_addr

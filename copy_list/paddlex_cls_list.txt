@@ -3,4 +3,5 @@ templates/paddlex_cls/onetasks.sh
 templates/paddlex_cls/prune.py
 templates/paddlex_cls/quant.py
 templates/paddlex_cls/train.py
+templates/paddlex_cls/test.py
 docs/paddlex_cls_doc.md
