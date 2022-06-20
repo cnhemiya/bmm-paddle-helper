@@ -3,8 +3,8 @@
 ## train.py
 
 ```bash
-[06-20 17:33:21 MainThread @logger.py:242] Argv: run/train.py -h
-[06-20 17:33:21 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 22:46:05 MainThread @logger.py:242] Argv: run/train.py -h
+[06-20 22:46:05 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: train.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--learning_rate] [--early_stop] [--early_stop_patience]
                 [--save_interval_epochs] [--log_interval_steps]
@@ -12,7 +12,7 @@ usage: train.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--eval_list] [--label_list] [--warmup_steps]
                 [--warmup_start_lr] [--lr_decay_epochs] [--lr_decay_gamma]
                 [--use_ema] [--opti_scheduler] [--opti_reg_coeff]
-                [--pretrain_weights] [--model] [--model_list] [--backbone]
+                [--pretrain_weights] [--model] [--model_list]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -49,14 +49,13 @@ optional arguments:
                         若为None，则不使用预训练模型。默认为'IMAGENET'
   --model               PaddleX 模型名称
   --model_list          输出 PaddleX 模型名称，默认不输出，选择后只输出信息，不会开启训练
-  --backbone            目标检测模型的 backbone 网络
 ```
 
 ## quant.py
 
 ```bash
-[06-20 17:33:23 MainThread @logger.py:242] Argv: run/quant.py -h
-[06-20 17:33:23 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 22:46:08 MainThread @logger.py:242] Argv: run/quant.py -h
+[06-20 22:46:08 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: quant.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--learning_rate] [--early_stop] [--early_stop_patience]
                 [--save_interval_epochs] [--log_interval_steps]
@@ -102,8 +101,8 @@ optional arguments:
 ## prune.py
 
 ```bash
-[06-20 17:33:26 MainThread @logger.py:242] Argv: run/prune.py -h
-[06-20 17:33:26 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 22:46:10 MainThread @logger.py:242] Argv: run/prune.py -h
+[06-20 22:46:10 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: prune.py [-h] [--cpu] [--num_workers] [--epochs] [--batch_size]
                 [--learning_rate] [--early_stop] [--early_stop_patience]
                 [--save_interval_epochs] [--log_interval_steps]
@@ -151,29 +150,27 @@ optional arguments:
 ## infer.py
 
 ```bash
-[06-20 17:33:29 MainThread @logger.py:242] Argv: run/infer.py -h
-[06-20 17:33:29 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
-usage: infer.py [-h] [--model_dir] [--predict_image] [--predict_image_dir]
-                [--threshold] [--result_list] [--result_dir] [--show_result]
-
-读取模型并预测
+[06-20 22:46:13 MainThread @logger.py:242] Argv: run/infer.py -h
+[06-20 22:46:13 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+usage: infer.py [-h] [--cpu] [--dataset] [--infer_list] [--model_dir]
+                [--result_info] [--result_path] [--split]
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --model_dir           读取模型的目录，默认 './output/best_model'
-  --predict_image       预测的图像文件
-  --predict_image_dir   预测的图像目录，选择后 --result_list，--show_result 失效
-  --threshold           score阈值，将Box置信度低于该阈值的框过滤，默认 0.5
-  --result_list         预测的结果列表文件，默认 './result/result.txt'
-  --result_dir          预测结果可视化的保存目录，默认 './result'
-  --show_result         显示预测结果的图像
+  -h, --help      show this help message and exit
+  --cpu           是否使用 cpu 计算，默认使用 CUDA
+  --dataset       数据集目录，默认 ./dataset/
+  --infer_list    预测集列表，默认 '--dataset' 参数目录下的 infer_list.txt
+  --model_dir     读取训练后的模型目录，默认 ./output/best_model
+  --result_info   显示预测结果详细信息，默认 不显示
+  --result_path   预测结果文件路径，默认 ./result/result.csv
+  --split         数据分隔符，默认 ','
 ```
 
 ## test.py
 
 ```bash
-[06-20 17:33:31 MainThread @logger.py:242] Argv: run/test.py -h
-[06-20 17:33:31 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
+[06-20 22:46:16 MainThread @logger.py:242] Argv: run/test.py -h
+[06-20 22:46:16 MainThread @utils.py:73] paddlepaddle version: 2.2.2.
 usage: test.py [-h] [--cpu] [--epochs] [--dataset] [--test_list] [--model_dir]
 
 optional arguments:

@@ -14,12 +14,14 @@ BASE_SAVE_DIR="./output/${MODEL}_${BACKBONE}"
 # 图像分割，没有 --fixed_input_shape 参数
 FIXED_INPUT_SHAPE="--fixed_input_shape=[-1,3,608,608]"
 
+# 程序目录
+APP_DIR=run
 # 训练程序
-TRAIN_APP=train.py
+TRAIN_APP="$APP_DIR/train.py"
 # 量化程序
-QUANT_APP=quant.py
+QUANT_APP="$APP_DIR/quant.py"
 # 裁剪程序
-PRUNE_APP=prune.py
+PRUNE_APP="$APP_DIR/prune.py"
 
 # 训练轮数
 TRAIN_EPOCHS=32
@@ -29,7 +31,7 @@ TRAIN_BATCH_SIZE=1
 TRAIN_LEARNING_RATE=0.01
 # 训练保存间隔轮数
 TRAIN_SAVE_INTERVAL_EPOCHS=1
-# 训练预加载权重
+# 训练预加载权重 IMAGENET COCO
 TRAIN_PRETRAIN_WEIGHTS=""
 # 训练模型保存的目录
 TRAIN_SAVE_DIR="$BASE_SAVE_DIR/normal"

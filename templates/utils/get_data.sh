@@ -14,7 +14,6 @@ make_dir_list() {
     for i in $dir_list; do
         if [ ! -d "$i" ]; then
             mkdir "$i"
-            touch "$i/.keep"
         fi
     done
 }

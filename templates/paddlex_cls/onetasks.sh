@@ -5,31 +5,33 @@
 # 模型名称
 MODEL="MobileNetV3_large_ssld"
 # IMAGE_SIZE 训练时的图像大小
-IMAGE_SIZE="1024"
+IMAGE_SIZE="224"
 # 数据集目录
-DATASET="./dataset/road_fighter_car"
+DATASET="./dataset/train"
 # 保存的目录
 BASE_SAVE_DIR="./output/${MODEL}_${IMAGE_SIZE}"
 # 导出模型的输入大小，默认 None，或者修改[n,c,w,h] --fixed_input_shape=[-1,3,224,224]
 # 图像分割，没有 --fixed_input_shape 参数
 FIXED_INPUT_SHAPE="--fixed_input_shape=[-1,3,224,224]"
 
+# 程序目录
+APP_DIR=run
 # 训练程序
-TRAIN_APP=train.py
+TRAIN_APP="$APP_DIR/train.py"
 # 量化程序
-QUANT_APP=quant.py
+QUANT_APP="$APP_DIR/quant.py"
 # 裁剪程序
-PRUNE_APP=prune.py
+PRUNE_APP="$APP_DIR/prune.py"
 
 # 训练轮数
 TRAIN_EPOCHS=32
 # 训练单批次数量
-TRAIN_BATCH_SIZE=1
+TRAIN_BATCH_SIZE=16
 # 训练学习率
 TRAIN_LEARNING_RATE=0.01
 # 训练保存间隔轮数
 TRAIN_SAVE_INTERVAL_EPOCHS=1
-# 训练预加载权重
+# 训练预加载权重 IMAGENET
 TRAIN_PRETRAIN_WEIGHTS=""
 # 训练模型保存的目录
 TRAIN_SAVE_DIR="$BASE_SAVE_DIR/normal"
@@ -39,7 +41,7 @@ TRAIN_BSET_SAVE_DIR="$TRAIN_SAVE_DIR/best_model"
 # 量化训练轮数
 QUANT_EPOCHS=16
 # 量化训练单批次数量
-QUANT_BATCH_SIZE=1
+QUANT_BATCH_SIZE=16
 # 量化训练学习率
 QUANT_LEARNING_RATE=0.001
 # 量化训练保存间隔轮数
@@ -54,7 +56,7 @@ QUANT_BSET_SAVE_DIR="$QUANT_SAVE_DIR/best_model"
 # 裁剪训练轮数
 PRUNE_EPOCHS=16
 # 裁剪训练单批次数量
-PRUNE_BATCH_SIZE=1
+PRUNE_BATCH_SIZE=16
 # 裁剪训练学习率
 PRUNE_LEARNING_RATE=0.001
 # 裁剪训练保存间隔轮数
@@ -71,7 +73,7 @@ PRUNE_BSET_SAVE_DIR="$PRUNE_SAVE_DIR/best_model"
 # 裁剪后量化训练轮数
 P_Q_EPOCHS=16
 # 裁剪后量化训练单批次数量
-P_Q_BATCH_SIZE=1
+P_Q_BATCH_SIZE=16
 # 裁剪后量化训练学习率
 P_Q_LEARNING_RATE=0.001
 # 裁剪后量化训练保存间隔轮数

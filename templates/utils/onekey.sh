@@ -2,6 +2,8 @@
 
 # 一键获取数据
 
+# 程序目录
+app_dir=run
 # 数据压缩包
 zip_file="road_fighter_car.zip"
 # aistudio 数据目录
@@ -22,7 +24,7 @@ labels_file="$data_dir/labels.txt"
 
 # 获取数据
 if [ ! -d "$data_dir" ]; then
-    bash get_data.sh "$zip_file" "$ais_dir"
+    bash $app_dir/get_data.sh "$zip_file" "$ais_dir"
 fi
 
 # 数据划分 图像分类
@@ -38,4 +40,4 @@ fi
 # echo "$labels_txt">"$labels_file"
 
 # 检查数据
-bash check_data.sh "$sub_data_dir"
+bash $app_dir/check_data.sh "$sub_data_dir"

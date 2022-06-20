@@ -26,24 +26,18 @@ def quant():
     # 定义训练和验证时的 transforms
     # API说明：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/apis/transforms/transforms.md
     train_transforms = T.Compose([
-        T.MixupImage(mixup_epoch=-1),
-        T.RandomDistort(),
-        T.RandomExpand(im_padding_value=[123.675, 116.28, 103.53]),
-        T.RandomCrop(),
+        T.RandomCrop(crop_size=224),
         T.RandomHorizontalFlip(),
-        T.BatchRandomResize(target_sizes=[320, 352, 384, 416, 448, 480, 512, 544, 576, 608],
-                            interp='RANDOM'),
-        T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
+        T.Normalize()])
 
     eval_transforms = T.Compose([
-        T.Resize(target_size=608, interp='CUBIC'),
-        T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
+        T.ResizeByShort(short_size=256),
+        T.CenterCrop(crop_size=224),
+        T.Normalize()])
 
     # 定义训练和验证所用的数据集
     # API说明：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/apis/datasets.md
-    train_dataset = pdx.datasets.VOCDetection(
+    train_dataset = pdx.datasets.ImageNet(
         data_dir=args.dataset,
         file_list=args.train_list,
         label_list=args.label_list,
@@ -51,7 +45,7 @@ def quant():
         num_workers=args.num_workers,
         shuffle=True)
 
-    eval_dataset = pdx.datasets.VOCDetection(
+    eval_dataset = pdx.datasets.ImageNet(
         data_dir=args.dataset,
         file_list=args.eval_list,
         label_list=args.label_list,
@@ -108,7 +102,7 @@ def quant():
                                             )
 
     # 模型训练
-    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/detection.md#quant_aware_train
+    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/classification.md#quant_aware_train
     # 使用参考：https://gitee.com/paddlepaddle/PaddleX/tree/develop/tutorials/slim/quantize
     # 可使用 VisualDL 查看训练指标，参考：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/visualdl.md
     print("开始训练 。。。保存路径：{}".format(args.save_dir))
@@ -124,7 +118,6 @@ def quant():
                             warmup_start_lr=args.warmup_start_lr,
                             lr_decay_epochs=args.lr_decay_epochs,
                             lr_decay_gamma=args.lr_decay_gamma,
-                            use_ema=args.use_ema,
                             early_stop=args.early_stop,
                             early_stop_patience=args.early_stop_patience,
                             resume_checkpoint=args.resume_checkpoint,

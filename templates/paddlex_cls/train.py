@@ -16,16 +16,6 @@ import mod.args
 import mod.pdxconfig as pdxcfg
 
 
-# 训练 transforms 图像大小
-TRAIN_IMAGE_SIZE = 224
-
-# 评估 transforms 图像大小
-EVAL_IMAGE_SIZE = 256
-
-# 测试 transforms 图像大小
-TEST_IMAGE_SIZE = 224
-
-
 def train():
     # 解析命令行参数
     args = mod.args.TrainX()
@@ -37,13 +27,13 @@ def train():
     # 定义训练和验证时的 transforms
     # API说明：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/apis/transforms/transforms.md
     train_transforms = T.Compose([
-        T.RandomCrop(crop_size=TRAIN_IMAGE_SIZE),
+        T.RandomCrop(crop_size=224),
         T.RandomHorizontalFlip(),
         T.Normalize()])
 
     eval_transforms = T.Compose([
-        T.ResizeByShort(short_size=EVAL_IMAGE_SIZE),
-        T.CenterCrop(crop_size=TRAIN_IMAGE_SIZE),
+        T.ResizeByShort(short_size=256),
+        T.CenterCrop(crop_size=224),
         T.Normalize()])
 
     # 定义训练和验证所用的数据集
@@ -104,7 +94,6 @@ def train():
                 warmup_start_lr=args.warmup_start_lr,
                 lr_decay_epochs=args.lr_decay_epochs,
                 lr_decay_gamma=args.lr_decay_gamma,
-                use_ema=args.use_ema,
                 early_stop=args.early_stop,
                 early_stop_patience=args.early_stop_patience,
                 resume_checkpoint=args.resume_checkpoint,

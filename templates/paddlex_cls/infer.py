@@ -16,19 +16,6 @@ import mod.utils
 import mod.args
 
 
-# 训练 transforms 图像大小
-TRAIN_IMAGE_SIZE = 224
-
-# 评估 transforms 图像大小
-EVAL_IMAGE_SIZE = 256
-
-# 测试 transforms 图像大小
-TEST_IMAGE_SIZE = 224
-
-# 分类 ID Key
-CATEGORY_ID_KEY = "category_id"
-
-
 def main():
     # 解析命令行参数
     args = mod.args.PredictX()
@@ -40,8 +27,8 @@ def main():
     # 定义训练和验证时的 transforms
     # API说明：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/apis/transforms/transforms.md
     infer_transforms = T.Compose([
-        T.ResizeByShort(short_size=TRAIN_IMAGE_SIZE),
-        T.CenterCrop(crop_size=TRAIN_IMAGE_SIZE),
+        T.ResizeByShort(short_size=256),
+        T.CenterCrop(crop_size=224),
         T.Normalize()])
 
     # 数据集解析
@@ -66,7 +53,7 @@ def main():
             print(image_file)
             print(data)
         result_lines.append("{}{}{}\n".format(
-            os.path.basename(image_file), args.split, data[CATEGORY_ID_KEY]))
+            os.path.basename(image_file), args.split, data["category_id"]))
     with open(args.result_path, "w") as f:
         f.writelines(result_lines)
     print("结束预测 。。。")
