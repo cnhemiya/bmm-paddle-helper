@@ -1,1 +1,0 @@
-docs/paddlex_seg_doc.md
