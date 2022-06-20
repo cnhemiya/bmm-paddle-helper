@@ -44,11 +44,11 @@ def read_list(file_list: str):
     Returns:
         list: 绝对路径的文件列表
     """
-    with open(file_list, "r") as f:
-        lines = f.readlines()
-    line_list = []
     this_path = os.path.dirname(os.path.realpath(__file__))
     this_path = os.path.realpath(os.path.join(this_path, ".."))
+    with open(os.path.join(this_path, file_list), "r") as f:
+        lines = f.readlines()
+    line_list = []
     for line in lines:
         line = line.rstrip("\n")
         line = line.rstrip("\r")
