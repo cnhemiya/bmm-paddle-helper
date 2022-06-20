@@ -7,13 +7,19 @@ MODEL="BiSeNetV2"
 # IMAGE_SIZE 训练时的图像大小
 IMAGE_SIZE="1024"
 # 数据集目录
-DATASET="./dataset/detroit_streetscape"
+DATASET="./dataset/road_fighter_car"
 # 保存的目录
 BASE_SAVE_DIR="./output/${MODEL}_${IMAGE_SIZE}"
 # 导出模型的输入大小，默认 None，或者修改[n,c,w,h] --fixed_input_shape=[-1,3,224,224]
 # 图像分割，没有 --fixed_input_shape 参数
-# FIXED_INPUT_SHAPE="--fixed_input_shape=[-1,3,512,512]"
 FIXED_INPUT_SHAPE=""
+
+# 训练程序
+TRAIN_APP=train.py
+# 量化程序
+QUANT_APP=quant.py
+# 裁剪程序
+PRUNE_APP=prune.py
 
 # 训练轮数
 TRAIN_EPOCHS=32
@@ -106,7 +112,7 @@ P_Q_INFER_ZIP_FILE="${MODEL}_${IMAGE_SIZE}_${P_Q_EPOCHS}e_${P_Q_LEARNING_RATE}_p
 
 echo "=====  开始训练  ====="
 # 训练
-python3 seg-train.py --dataset "$DATASET" \
+python3 $TRAIN_APP --dataset "$DATASET" \
     --epochs $TRAIN_EPOCHS \
     --batch_size $TRAIN_BATCH_SIZE \
     --learning_rate $TRAIN_LEARNING_RATE \
@@ -124,7 +130,7 @@ tar -caf "$BASE_SAVE_DIR/$TRAIN_INFER_ZIP_FILE" "$TRAIN_INFER_SAVE_DIR"
 
 echo "=====  开始量化  ====="
 # 量化
-python3 seg-quant.py --dataset "$DATASET" \
+python3 $QUANT_APP --dataset "$DATASET" \
     --epochs $QUANT_EPOCHS \
     --batch_size $QUANT_BATCH_SIZE \
     --learning_rate $QUANT_LEARNING_RATE \
@@ -141,7 +147,7 @@ tar -caf "$BASE_SAVE_DIR/$QUANT_INFER_ZIP_FILE" "$QUANT_INFER_SAVE_DIR"
 
 # echo "=====  开始裁剪  ====="
 # # 裁剪
-# python3 seg-prune.py --dataset "$DATASET" \
+# python3 $PRUNE_APP --dataset "$DATASET" \
 #     --epochs $PRUNE_EPOCHS \
 #     --batch_size $PRUNE_BATCH_SIZE \
 #     --learning_rate $PRUNE_LEARNING_RATE \
@@ -159,7 +165,7 @@ tar -caf "$BASE_SAVE_DIR/$QUANT_INFER_ZIP_FILE" "$QUANT_INFER_SAVE_DIR"
 
 # echo "=====  开始裁剪后量化  ====="
 # # 裁剪后量化
-# python3 seg-quant.py --dataset "$DATASET" \
+# python3 $QUANT_APP --dataset "$DATASET" \
 #     --epochs $P_Q_EPOCHS \
 #     --batch_size $P_Q_BATCH_SIZE \
 #     --learning_rate $P_Q_LEARNING_RATE \
@@ -174,4 +180,4 @@ tar -caf "$BASE_SAVE_DIR/$QUANT_INFER_ZIP_FILE" "$QUANT_INFER_SAVE_DIR"
 # paddlex --export_inference --model_dir="$P_Q_BSET_SAVE_DIR" --save_dir="$P_Q_INFER_SAVE_DIR" $FIXED_INPUT_SHAPE
 # tar -caf "$BASE_SAVE_DIR/$P_Q_INFER_ZIP_FILE" "$P_Q_INFER_SAVE_DIR"
 
-echo "结束任务"
+echo "=====  结束任务  ====="

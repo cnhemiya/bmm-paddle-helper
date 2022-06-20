@@ -10,18 +10,13 @@ DATE:    2022-06-19 13:52
 
 import os
 import sys
-import cv2
 import argparse
 import paddlex as pdx
 
+
 # 可视化颜色，EISeg 颜色通道顺序为 RGB，paddlex.seg.visualize 颜色通道顺序为 BGR
-VISUALIZE_COLOR = [0, 0, 0,        # 背景
-                   164, 101, 52,   # 汽车
-                   6, 128, 245,    # 交通标志
-                   22, 210, 115,   # 车道线
-                   41, 41, 239,    # 行人
-                   190, 104, 145,  # 摩托车手
-                   41, 41, 239, ]  # 骑行者
+# VISUALIZE_COLOR = [0, 0, 0]        # 背景
+VISUALIZE_COLOR = None
 
 
 def get_arg_parse():

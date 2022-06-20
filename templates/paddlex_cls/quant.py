@@ -4,7 +4,7 @@
 LICENSE: MulanPSL2
 AUTHOR:  cnhemiya@qq.com
 DATE:    2022-05-25 18:54
-文档说明: 目标检测在线量化
+文档说明: 图像分类在线量化
 """
 
 
@@ -91,7 +91,7 @@ def quant():
     model = pdx.load_model(args.model_dir)
 
     # 优化器
-    # https://gitee.com/paddlepaddle/PaddleX/blob/develop/paddlex/cv/models/detector.py#L115
+    # https://gitee.com/paddlepaddle/PaddleX/blob/develop/paddlex/cv/models/classifier.py#L147
     optimizer = None
     if args.opti_scheduler != "auto":
         optimizer = model.default_optimizer(parameters=model.net.parameters(),

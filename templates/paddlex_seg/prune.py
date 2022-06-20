@@ -26,16 +26,14 @@ def prune():
     # 定义训练和验证时的 transforms
     # API说明：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/apis/transforms/transforms.md
     train_transforms = T.Compose([
-        T.Padding(target_size=1920, pad_mode=0, im_padding_value=[0, 0, 0]),
-        T.Resize(target_size=1024),
+        T.Resize(target_size=512),
         T.RandomHorizontalFlip(),
         T.Normalize(
             mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
 
     eval_transforms = T.Compose([
-        T.Padding(target_size=1920, pad_mode=0, im_padding_value=[0, 0, 0]),
-        T.Resize(target_size=1024),
+        T.Resize(target_size=512),
         T.Normalize(
             mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])

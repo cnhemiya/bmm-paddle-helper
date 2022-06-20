@@ -4,7 +4,7 @@
 LICENSE: MulanPSL2
 AUTHOR:  cnhemiya@qq.com
 DATE:    2022-05-25 15:41
-文档说明: 目标检测裁剪
+文档说明: 图像分类裁剪
 """
 
 
@@ -66,8 +66,8 @@ def prune():
     # Step 1/3: 分析模型各层参数在不同的裁剪比例下的敏感度
     # 注意：目标检测模型的裁剪依赖PaddleSlim 2.1.0
     # 注意：如果之前运行过该步骤，第二次运行时会自动加载已有的 'save_dir'/model.sensi.data，不再进行敏感度分析
-    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/detection.md#analyze_sensitivity
-    # 使用参考：https://gitee.com/paddlepaddle/PaddleX/tree/develop/tutorials/slim/prune/object_detection
+    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/classification.md#analyze_sensitivity
+    # 使用参考：https://gitee.com/paddlepaddle/PaddleX/tree/develop/tutorials/slim/prune/image_classification
     if not args.skip_analyze:
         print("敏感度分析 。。。保存路径：{}".format(args.save_dir))
         model.analyze_sensitivity(
@@ -76,13 +76,13 @@ def prune():
             save_dir=args.save_dir)
 
     # Step 2/3: 根据选择的FLOPs减小比例对模型进行裁剪
-    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/detection.md#prune
-    # 使用参考：https://gitee.com/paddlepaddle/PaddleX/tree/develop/tutorials/slim/prune/object_detection
+    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/classification.md#prune
+    # 使用参考：https://gitee.com/paddlepaddle/PaddleX/tree/develop/tutorials/slim/prune/image_classification
     print("对模型进行裁剪 。。。FLOPS：{}".format(args.pruned_flops))
     model.prune(pruned_flops=args.pruned_flops)
 
     # 优化器
-    # https://gitee.com/paddlepaddle/PaddleX/blob/develop/paddlex/cv/models/detector.py#L115
+    # https://gitee.com/paddlepaddle/PaddleX/blob/develop/paddlex/cv/models/classifier.py#L147
     optimizer = None
     if args.opti_scheduler != "auto":
         optimizer = model.default_optimizer(parameters=model.net.parameters(),
@@ -99,7 +99,7 @@ def prune():
                                             )
 
     # 模型训练
-    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/detection.md
+    # API说明：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/apis/models/classification.md
     # 参数调整：https://gitee.com/paddlepaddle/PaddleX/blob/develop/docs/parameters.md
     # 可使用 VisualDL 查看训练指标，参考：https://gitee.com/PaddlePaddle/PaddleX/blob/develop/docs/visualdl.md
     print("开始训练 。。。保存路径：{}".format(args.save_dir))

@@ -2,7 +2,7 @@
 
 # 获取数据到 dataset 目录下
 # 参数1：数据文件，例如：road_fighter_car.zip
-# 参数1：aistudio 数据目录，例如：data148354
+# 参数2：aistudio 数据目录，例如：data148354
 
 dir_list="./dataset ./output ./result"
 dataset_dir="./dataset"
@@ -65,4 +65,3 @@ ais_dataset_dir=$ais_dataset_dir/$2
 
 make_dir_list
 get_all_zip_data
-

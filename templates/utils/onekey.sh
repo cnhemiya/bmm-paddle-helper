@@ -25,9 +25,14 @@ if [ ! -d "$data_dir" ]; then
     bash get_data.sh "$zip_file" "$ais_dir"
 fi
 
-# 生成数据集列表
-# python3 make-dataset.py all $data_dir $dataset_list
+# 数据划分 图像分类
+# paddlex --split_dataset --format ImageNet --dataset_dir "$data_dir" --val_value 0.2 --test_value 0.1
+# 数据划分 目标检测
 # paddlex --split_dataset --format VOC --dataset_dir "$data_dir" --val_value 0.2 --test_value 0.1
+# 数据划分 实例分割
+# paddlex --split_dataset --format COCO --dataset_dir "$data_dir" --val_value 0.2 --test_value 0.1
+# 数据划分 语义分割
+# paddlex --split_dataset --format SEG --dataset_dir "$data_dir" --val_value 0.2 --test_value 0.1
 
 # 生成分类标签
 # echo "$labels_txt">"$labels_file"
