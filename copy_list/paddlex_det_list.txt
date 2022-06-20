@@ -3,3 +3,4 @@ templates/paddlex_det/onetasks.sh
 templates/paddlex_det/prune.py
 templates/paddlex_det/quant.py
 templates/paddlex_det/train.py
+docs/paddlex_det_doc.md
