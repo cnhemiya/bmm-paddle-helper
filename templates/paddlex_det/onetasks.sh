@@ -16,6 +16,8 @@ FIXED_INPUT_SHAPE="--fixed_input_shape=[-1,3,608,608]"
 
 # 程序目录
 APP_DIR=run
+# python 程序
+PYTHON_APP=python3
 # 训练程序
 TRAIN_APP="$APP_DIR/train.py"
 # 量化程序
@@ -114,7 +116,7 @@ P_Q_INFER_ZIP_FILE="${MODEL}_${BACKBONE}_${P_Q_EPOCHS}e_${P_Q_LEARNING_RATE}_pru
 
 echo "=====  开始训练  ====="
 # 训练
-python3 $TRAIN_APP --dataset "$DATASET" \
+$PYTHON_APP $TRAIN_APP --dataset "$DATASET" \
     --epochs $TRAIN_EPOCHS \
     --batch_size $TRAIN_BATCH_SIZE \
     --learning_rate $TRAIN_LEARNING_RATE \
@@ -133,7 +135,7 @@ tar -caf "$BASE_SAVE_DIR/$TRAIN_INFER_ZIP_FILE" "$TRAIN_INFER_SAVE_DIR"
 
 echo "=====  开始量化  ====="
 # 量化
-python3 $QUANT_APP --dataset "$DATASET" \
+$PYTHON_APP $QUANT_APP --dataset "$DATASET" \
     --epochs $QUANT_EPOCHS \
     --batch_size $QUANT_BATCH_SIZE \
     --learning_rate $QUANT_LEARNING_RATE \
@@ -150,7 +152,7 @@ tar -caf "$BASE_SAVE_DIR/$QUANT_INFER_ZIP_FILE" "$QUANT_INFER_SAVE_DIR"
 
 # echo "=====  开始裁剪  ====="
 # # 裁剪
-# python3 $PRUNE_APP --dataset "$DATASET" \
+# $PYTHON_APP $PRUNE_APP --dataset "$DATASET" \
 #     --epochs $PRUNE_EPOCHS \
 #     --batch_size $PRUNE_BATCH_SIZE \
 #     --learning_rate $PRUNE_LEARNING_RATE \
@@ -168,7 +170,7 @@ tar -caf "$BASE_SAVE_DIR/$QUANT_INFER_ZIP_FILE" "$QUANT_INFER_SAVE_DIR"
 
 # echo "=====  开始裁剪后量化  ====="
 # # 裁剪后量化
-# python3 $QUANT_APP --dataset "$DATASET" \
+# $PYTHON_APP $QUANT_APP --dataset "$DATASET" \
 #     --epochs $P_Q_EPOCHS \
 #     --batch_size $P_Q_BATCH_SIZE \
 #     --learning_rate $P_Q_LEARNING_RATE \

@@ -91,7 +91,7 @@ run
 
 |文件|说明|
 |:--|:--|
-|aismain.ipynb|Jupyter notebook 适用百度 AI Studio|
+|aismain.ipynb|Jupyter notebook 适用百度 AI Studio，放到项目根目录，或者根据目录修改|
 |check_data.sh|检查数据|
 |get_data.sh|获取数据|
 |infer.py|预测程序|
@@ -155,6 +155,43 @@ python3 run/quant.py \
     --model_dir ./output/best_model \
     --save_dir ./output/quant
 ```
+
+## 需要修改什么
+
+### aismain.ipynb
+
+- 放到百度 AI Studio 项目根目录，或者根据目录修改
+
+### check_data.sh
+
+- dataset_dir：需要检查的文件所在的目录
+- data_files：需要检查的文件
+
+### onekey.sh
+
+- app_dir：程序目录，如果不是 run，根据自己的设定修改
+- zip_file：数据压缩包
+- ais_dir：aistudio 数据目录
+- sub_data_dir：解压后的数据目录
+- data_dir：数据目录
+
+### onetasks.sh
+
+- MODEL：模型名称
+- BACKBONE：主干模型
+- DATASET：数据集目录
+- BASE_SAVE_DIR：保存的目录
+- FIXED_INPUT_SHAPE：导出模型的输入大小
+- APP_DIR：程序目录
+- PYTHON_APP：python 程序
+
+### transforms
+
+- 可以自己修改 train.py prune.py quant.py 的 transforms 非必须。
+
+### dataset
+
+- 可以自己修改 train.py prune.py quant.py 的 dataset 非必须。
 
 ## 开源协议
 
