@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TO_DIR="./run/aistudio"
-AISTUDIO_IPYNB="./examples/aistudio/main.ipynb"
+AISTUDIO_IPYNB="./templates/aistudio/main.ipynb"
 PADDLEX_CLS_IPYNB="./templates/paddlex_cls/aismain.ipynb"
 PADDLEX_DET_IPYNB="./templates/paddlex_det/aismain.ipynb"
 PADDLEX_SEG_IPYNB="./templates/paddlex_seg/aismain.ipynb"
