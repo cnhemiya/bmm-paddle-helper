@@ -202,3 +202,5 @@ python3 run/quant.py \
 **GITEE**&nbsp;&nbsp;&nbsp;&nbsp;**https://gitee.com/cnhemiya/bmm-paddle-helper**
 
 **GITHUB**&nbsp;&nbsp;&nbsp;&nbsp;**https://github.com/cnhemiya/bmm-paddle-helper**
+
+**AISTUDIO**&nbsp;&nbsp;**https://aistudio.baidu.com/aistudio/projectdetail/4260357**
