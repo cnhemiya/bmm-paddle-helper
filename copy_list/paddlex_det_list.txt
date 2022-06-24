@@ -3,5 +3,5 @@ templates/paddlex_det/onetasks.sh
 templates/paddlex_det/prune.py
 templates/paddlex_det/quant.py
 templates/paddlex_det/train.py
-templates/paddlex_det/aismain.ipynb
+templates/paddlex_det/aislite.ipynb
 docs/paddlex_det_doc.md
