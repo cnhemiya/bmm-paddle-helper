@@ -1,10 +1,10 @@
 #!/bin/bash
 
 TO_DIR="./run/aistudio"
-AISTUDIO_IPYNB="./templates/aistudio/main.ipynb"
-PADDLEX_CLS_IPYNB="./templates/paddlex_cls/aismain.ipynb"
-PADDLEX_DET_IPYNB="./templates/paddlex_det/aismain.ipynb"
-PADDLEX_SEG_IPYNB="./templates/paddlex_seg/aismain.ipynb"
+AISTUDIO_IPYNB="./docs/aistudio/main.ipynb"
+PADDLEX_CLS_IPYNB="./templates/paddlex_cls/aislite.ipynb"
+PADDLEX_DET_IPYNB="./templates/paddlex_det/aislite.ipynb"
+PADDLEX_SEG_IPYNB="./templates/paddlex_seg/aislite.ipynb"
 
 if [ ! -d $TO_DIR ]; then
     mkdir $TO_DIR
