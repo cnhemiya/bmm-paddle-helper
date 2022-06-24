@@ -68,7 +68,7 @@ python3 tools/mkbmmph.py --project paddlex_det --to_dir ./run
 
 ```bash
 run
-├── aismain.ipynb
+├── aislite.ipynb
 ├── check_data.sh
 ├── get_data.sh
 ├── infer.py
@@ -91,7 +91,7 @@ run
 
 |文件|说明|
 |:--|:--|
-|aismain.ipynb|Jupyter notebook 适用百度 AI Studio，放到项目根目录，或者根据目录修改|
+|aislite.ipynb|Jupyter notebook 适用百度 AI Studio，放到项目根目录，或者根据目录修改|
 |check_data.sh|检查数据|
 |get_data.sh|获取数据|
 |infer.py|预测程序|
@@ -103,10 +103,10 @@ run
 |quant.py|量化程序|
 |train.py|训练程序|
 
-### aismain.ipynb 目录结构示例
+### aislite.ipynb 目录结构示例
 
 ```bash
-├── aismain.ipynb
+├── aislite.ipynb
 ├── data
 └── work
     └── run
@@ -158,7 +158,7 @@ python3 run/quant.py \
 
 ## 需要修改什么
 
-### aismain.ipynb
+### aislite.ipynb
 
 - 放到百度 AI Studio 项目根目录，或者根据目录修改
 
